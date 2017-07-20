@@ -1,0 +1,49 @@
+# depslib dependency file v1.0
+1500546282 source:/home/yang/cpp/hashSetClt/hashSetClt/main.cpp
+	<iostream>
+	"unix.hpp"
+
+1500547420 /home/yang/cpp/hashSetClt/hashSetClt/unix.hpp
+	<netdb.h>
+	<poll.h>
+	<sys/errno.h>
+	<unistd.h>
+	<cstring>
+	<sys/socket.h>
+	<netinet/in.h>
+	<sys/socket.h>
+
+1500557038 source:/home/yang/cpp/hashSetClt/common.cpp
+	"common.hpp"
+	<algorithm>
+	<fstream>
+	<memory>
+
+1500556583 /home/yang/cpp/hashSetClt/common.hpp
+	<cstdint>
+	<cstdlib>
+	<exception>
+	<iostream>
+	<string>
+	<vector>
+	"win32.hpp"
+	"unix.hpp"
+
+1500556457 /home/yang/cpp/hashSetClt/unix.hpp
+	<netdb.h>
+	<poll.h>
+	<sys/errno.h>
+	<unistd.h>
+	<algorithm>
+	<cstring>
+	<sys/socket.h>
+	<netinet/in.h>
+	<sys/socket.h>
+
+1500548185 source:/home/yang/cpp/hashSetClt/main.cpp
+	<iostream>
+	"common.hpp"
+
+1500564045 source:/home/yang/cpp/hashSetClt/queryServer.cpp
+	"common.hpp"
+
