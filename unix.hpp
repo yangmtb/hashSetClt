@@ -70,8 +70,10 @@ public:
     {
         // this has a wacky edge case if you are sending 2**32 bytes and have a network error. yes, it's a bug.
         if (line.size() != static_cast<size_t>(send(sock, line.c_str(), line.size(), 0))) {
+            std::cerr << "send err" << line << std::endl;
             throw NetworkError();
         }
+        //std::cout << "send success " << line << std::endl;
     }
 
     void write(const char *buf)

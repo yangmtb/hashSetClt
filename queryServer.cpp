@@ -27,8 +27,10 @@ void writeOutput(const vector<string> &buffer, const string &resultLine)
 {
     auto tokens { tokenize(resultLine) };
     if (tokens.empty()) {
+        std::cout << "empty" << std::endl;
         return;
     }
+    std::cout << "result line:" << resultLine << std::endl;
     if (tokens.at(0) != "OK") {
         throw BadQuery();
     }
@@ -65,11 +67,12 @@ void queryServer(const vector<string> &buffer)
     if (!sockObj.isConnected()) {
         try {
             sockObj.connect(SERVER, PORT);
-            sockObj.write("Version: 2.0\r\n");
+            sockObj.write("Version\r\n");
             auto tokens { tokenize(sockObj.readLine()) };
             if (tokens.size() == 0 || tokens.at(0) != "OK") {
                 throw BadHandshake();
             }
+            std::cout << "connect " << tokens.at(0) << std::endl;
         } catch (ConnectionRefused &) {
             std::cerr << "Error: connection refused" << std::endl;
             bomb(-1);
@@ -86,6 +89,7 @@ void queryServer(const vector<string> &buffer)
         }
         q += "\r\n";
         sockObj.write(q);
+        //std::cout << "q:" << q << std::endl;
         writeOutput(buffer, sockObj.readLine());
     } catch (BadQuery &) {
         std::cerr << "error: server didn't like our query." << std::endl;

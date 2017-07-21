@@ -32,13 +32,18 @@ int main()
         bomb(-1);
     }
 #endif // WINDOWS
-    cout << "Hello world!" << endl;
+    cout << "input 'query' to query" << endl;
+    SCORE_HITS = true;
     vector<string> buffer;
+    //buffer.push_back(string { "QUERY" });
     regex validLine { "^[A-Fa-f0-9]{32}", std::regex_constants::icase | std::regex_constants::optimize };
     try {
         string line;
         while (cin) {
             getline(cin, line);
+            if (line == "query") {
+                break;
+            }
             transform(line.begin(), line.end(), line.begin(), ::toupper);
             if (regex_search(line, validLine)) {
                 buffer.push_back(string(line.begin(), line.begin()+32));
@@ -46,9 +51,11 @@ int main()
                     queryServer(buffer);
                     buffer.clear();
                 }
+                //break;
             }
         }
     } catch (EOFException &) {
+        std::cerr << "???" << endl;
         // pass : this is entirely expected. Uh, well, maybe. it should actually be removed , i think..........
     }
     if (buffer.size()) {
