@@ -32,16 +32,19 @@ int main()
         bomb(-1);
     }
 #endif // WINDOWS
-    cout << "input 'query' to query" << endl;
+    cout << "input 'query' to query, 'quit' to quit." << endl;
     SCORE_HITS = true;
     vector<string> buffer;
     //buffer.push_back(string { "QUERY" });
-    regex validLine { "^[A-Fa-f0-9]{32}", std::regex_constants::icase | std::regex_constants::optimize };
+    regex validLine { "^[A-Fa-f0-9]{32}$", std::regex_constants::icase | std::regex_constants::optimize };
     try {
         string line;
         while (cin) {
             getline(cin, line);
             if (line == "query") {
+                queryServer(buffer);
+                buffer.clear();
+            } else if (line == "quit") {
                 break;
             }
             transform(line.begin(), line.end(), line.begin(), ::toupper);

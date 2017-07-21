@@ -30,7 +30,7 @@ void writeOutput(const vector<string> &buffer, const string &resultLine)
         std::cout << "empty" << std::endl;
         return;
     }
-    std::cout << "result line:" << resultLine << std::endl;
+    //std::cout << "result line:" << resultLine << std::endl;
     if (tokens.at(0) != "OK") {
         throw BadQuery();
     }
@@ -44,6 +44,7 @@ void writeOutput(const vector<string> &buffer, const string &resultLine)
             std::cout << buffer.at(idx) << std::endl;
         }
     }
+    std::cout << std::endl;
 }
 
 } // namespace
@@ -52,7 +53,7 @@ void endConnection()
 {
     try {
         if (sockObj.isConnected()) {
-            sockObj.write("BYE\r\n");
+            sockObj.write("bye\r\n");
         }
     } catch (std::exception &) {
         // pass : we are closing the connection anyway.
